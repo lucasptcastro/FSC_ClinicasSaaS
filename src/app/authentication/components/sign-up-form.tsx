@@ -1,4 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -20,6 +22,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { authClient } from "@/lib/auth-client";
 
 const registerSchema = z.object({
   name: z.string().trim().min(1, { message: "Nome é obrigatório" }),
@@ -35,6 +38,8 @@ const registerSchema = z.object({
 });
 
 export function SignUpForm() {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -44,8 +49,21 @@ export function SignUpForm() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof registerSchema>) {
-    console.log(data);
+  async function onSubmit(values: z.infer<typeof registerSchema>) {
+    // função assíncrona usando a instância do better-auth para criar um usuário com email e senha
+    await authClient.signUp.email(
+      {
+        email: values.email,
+        name: values.name,
+        password: values.password,
+      },
+      {
+        // função para redirecionar o usuário para a página de dashboard após o cadastro em caso de sucesso
+        onSuccess: () => {
+          router.push("/dashboard");
+        },
+      },
+    );
   }
 
   return (
@@ -99,8 +117,16 @@ export function SignUpForm() {
               />
             </CardContent>
             <CardFooter>
-              <Button type="submit" className="w-full">
-                Criar conta
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={form.formState.isSubmitting}
+              >
+                {form.formState.isSubmitting ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  "Criar conta"
+                )}
               </Button>
             </CardFooter>
           </form>
