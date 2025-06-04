@@ -119,7 +119,11 @@ export function SignUpForm() {
                   <FormItem>
                     <FormLabel>Senha</FormLabel>
                     <FormControl>
-                      <Input placeholder="Informe sua senha" {...field} />
+                      <Input
+                        type="password"
+                        placeholder="Informe sua senha"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
