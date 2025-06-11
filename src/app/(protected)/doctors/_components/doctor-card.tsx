@@ -84,6 +84,7 @@ export function DoctorCard({ doctor }: DoctorCardProps) {
             onSuccess={() => {
               setIsUpsertDoctorDialogOpen(false);
             }}
+            isOpen={isUpsertDoctorDialogOpen}
           />
         </Dialog>
       </CardFooter>
