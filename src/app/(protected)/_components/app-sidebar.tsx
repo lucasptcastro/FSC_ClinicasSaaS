@@ -87,7 +87,7 @@ export function AppSidebar() {
 
   return (
     <Sidebar>
-      <SidebarHeader className="border-b p-4">
+      <SidebarHeader className="border-b bg-white p-4">
         <Image
           alt="Logo Doutor Agenda"
           src="/logo.svg"
@@ -96,7 +96,7 @@ export function AppSidebar() {
         />
       </SidebarHeader>
 
-      <SidebarContent>
+      <SidebarContent className="bg-white">
         <SidebarGroup>
           <SidebarGroupLabel>Menu Principal</SidebarGroupLabel>
           <SidebarGroupContent>

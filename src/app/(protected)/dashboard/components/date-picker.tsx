@@ -32,12 +32,12 @@ export function DatePicker({
   const handleDateSelect = (dateRange: DateRange | undefined) => {
     if (dateRange?.from) {
       setFrom(dateRange.from, {
-        shallow: false,
+        shallow: false, // faz com que a página seja recarregada para atualizar os valores
       });
     }
     if (dateRange?.to) {
       setTo(dateRange.to, {
-        shallow: false,
+        shallow: false, // faz com que a página seja recarregada para atualizar os valores
       });
     }
   };

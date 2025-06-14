@@ -9,7 +9,7 @@ export default function ProtectedLayout({
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main className="w-full">
+      <main className="w-full bg-[#FAFAFA]">
         <SidebarTrigger />
         {children}
       </main>
