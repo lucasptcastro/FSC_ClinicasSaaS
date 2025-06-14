@@ -2,9 +2,13 @@
 
 ---
 
-URL STATE -> Conceito onde
+### Conceitos
 
-### React
+- URL State: refere-se à prática de armazenar informações do estado atual da aplicação diretamente na URL do navegador, geralmente por meio de query strings, path parameters ou hash fragments. Isso é muito comum em aplicações web modernas com SPA (Single Page Application), como as feitas com React, Vue ou Angular.
+
+- Compound Components: é um padrão avançado em React onde um componente "pai" expõe seus "filhos" como partes reutilizáveis e específicas, mantendo uma interface declarativa e organizada. É a forma de fragmentar um componente em várias partes.
+
+- Conventional Commits: é um padrão para escrever mensagens de commit de forma estruturada e semântica. Ele define uma convenção simples e legível por humanos e por máquinas para que cada commit indique claramente a intenção da mudança no código.
 
 ### Next
 
@@ -40,11 +44,23 @@ Better Auth é uma biblioteca de autenticação e autorização abrangente para 
 
 ### Drizzle
 
+É um Object-Relational Mapper (ORM) moderno para TypeScript/JavaScript focado em performance, segurança de tipos e simplicidade. Ele permite que você interaja com bancos de dados SQL (como PostgreSQL, MySQL, SQLite) usando uma API totalmente tipada e baseada em código — ou seja, sem mágica, sem strings de SQL soltas e com autocompletar inteligente direto no editor.
+
 ### Stripe
 
 ### ChatGPT
 
 ### ShadCN
+
+### Nuqs
+
+É usada para sincronizar o estado da sua aplicação React com a URL (query string) de forma simples e declarativa.
+
+Ela é especialmente útil quando você quer que o estado da aplicação (como filtros, paginação, abas, etc.) fique refletido na URL — assim o usuário pode:
+
+- Compartilhar links com o estado atual da aplicação (ex: filtros aplicados);
+- Voltar e avançar no histórico do navegador mantendo o estado correto;
+- Recarregar a página sem perder o que estava selecionado.
 
 ### Cursor rules
 
