@@ -19,11 +19,12 @@ export function TopDoctors({ doctors }: TopDoctorsProps) {
     <Card className="mx-auto w-full border-[#F4F4F5] shadow-none">
       <CardContent>
         {/* Header */}
-        <div className="mb-8 flex items-center justify-between">
+        <div className="mb-8 flex flex-col justify-center gap-6">
           <div className="flex items-center gap-3">
             <Stethoscope className="text-muted-foreground" />
             <CardTitle className="text-base">Médicos</CardTitle>
           </div>
+          <hr className="h-[1px] w-full bg-[#F4F4F5] opacity-30" />
         </div>
 
         {/* Doctors List */}
