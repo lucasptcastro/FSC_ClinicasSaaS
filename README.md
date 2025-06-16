@@ -52,6 +52,8 @@ Better Auth é uma biblioteca de autenticação e autorização abrangente para 
 
 ### ShadCN
 
+- No arquivo "./src/app/(protected)/dashboard/\_components/appointments-chart" tem um modelo de chart
+
 ### Nuqs
 
 É usada para sincronizar o estado da sua aplicação React com a URL (query string) de forma simples e declarativa.

@@ -49,7 +49,7 @@ export function StatsCards({
       {stats.map((stat) => {
         const Icon = stat.icon;
         return (
-          <Card key={stat.title} className="gap-2 shadow-none">
+          <Card key={stat.title} className="gap-2 border-[#F4F4F5] shadow-none">
             <CardHeader className="flex flex-row items-center gap-2 space-y-0 pb-2">
               <div className="bg-primary/10 flex h-8 w-8 items-center justify-center rounded-full">
                 <Icon className="text-primary h-4 w-4" />
