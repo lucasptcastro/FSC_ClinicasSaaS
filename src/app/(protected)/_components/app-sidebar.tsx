@@ -98,15 +98,23 @@ export function AppSidebar() {
 
       <SidebarContent className="bg-white">
         <SidebarGroup>
-          <SidebarGroupLabel>Menu Principal</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-[#5B7189]">
+            Menu Principal
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild isActive={pathname === item.url}>
                     <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
+                      <item.icon
+                        className={`${pathname === item.url ? "text-[#0B68F7]" : "text-[#5B7189]"}`}
+                      />
+                      <span
+                        className={`${pathname === item.url ? "text-[#0B68F7]" : "text-[#5B7189]"} font-semibold`}
+                      >
+                        {item.title}
+                      </span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
