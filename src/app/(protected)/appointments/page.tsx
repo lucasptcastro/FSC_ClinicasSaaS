@@ -60,7 +60,9 @@ const AppointmentsPage = async () => {
         </PageActions>
       </PageHeader>
       <PageContent>
-        <DataTable data={appointments} columns={appointmentsTableColumns} />
+        <div className="bg-white">
+          <DataTable data={appointments} columns={appointmentsTableColumns} />
+        </div>
       </PageContent>
     </PageContainer>
   );
