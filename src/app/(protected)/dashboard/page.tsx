@@ -214,7 +214,6 @@ export default async function DashboardPage({
           <TopDoctors doctors={topDoctors} />
         </div>
         <div className="grid grid-cols-[2.25fr_1fr] gap-4">
-          {/* Tabela */}
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">

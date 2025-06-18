@@ -1,7 +1,7 @@
 "use client";
 
 import dayjs from "dayjs";
-import { DollarSign } from "lucide-react";
+import { Target } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -58,15 +58,13 @@ export function AppointmentsChart({
   } satisfies ChartConfig;
 
   return (
-    <Card className="border-[#F4F4F5] shadow-none">
+    <Card className="h-fit border-[#F4F4F5] shadow-none">
       <CardHeader className="flex flex-row items-center gap-2">
-        <div className="bg-primary/10 flex h-8 w-8 items-center justify-center rounded-full">
-          <DollarSign className="text-primary h-4 w-4" />
-        </div>
+        <Target className="text-muted-foreground" />
         <CardTitle>Agendamentos e Faturamento</CardTitle>
       </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig} className="min-h-[200px]">
+      <CardContent className="h-full">
+        <ChartContainer config={chartConfig} className="h-[320px] w-full">
           <AreaChart
             data={chartData}
             margin={{
