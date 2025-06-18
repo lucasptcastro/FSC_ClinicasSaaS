@@ -1,7 +1,9 @@
+import { endOfDay, startOfDay } from "date-fns";
 import dayjs from "dayjs";
 import { and, count, desc, eq, gte, lte, sql, sum } from "drizzle-orm";
 import { Calendar } from "lucide-react";
 import { headers } from "next/headers";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -19,8 +21,8 @@ import { db } from "@/db";
 import { appointmentsTable, doctorsTable, patientsTable } from "@/db/schema";
 import { auth } from "@/lib/auth";
 
-import { appointmentsTableColumns } from "../appointments/_components/table-columns";
 import { AppointmentsChart } from "./_components/appointments-chart";
+import { dashboardAppointmentsTableColumns } from "./_components/appointments-table-columns";
 import { DatePicker } from "./_components/date-picker";
 import { StatsCards } from "./_components/stats-cards";
 import { TopDoctors } from "./_components/top-doctors";
@@ -56,6 +58,10 @@ export default async function DashboardPage({
       `/dashboard?from=${dayjs().format("YYYY-MM-DD")}&to=${dayjs().add(1, "month").format("YYYY-MM-DD")}`,
     );
   }
+
+  const now = new Date(); // data atual
+  const start = startOfDay(now); // cria uma data no formato 2025-06-18T00:00:00 (horário de início do dia)
+  const end = endOfDay(now); // cria uma data no formato 2025-06-18T23:59:59.999 (horário de fim do dia)
 
   const [
     [totalRevenue],
@@ -148,8 +154,8 @@ export default async function DashboardPage({
     db.query.appointmentsTable.findMany({
       where: and(
         eq(appointmentsTable.clinicId, session.user.clinic.id),
-        gte(appointmentsTable.date, new Date()),
-        lte(appointmentsTable.date, new Date()),
+        gte(appointmentsTable.date, start),
+        lte(appointmentsTable.date, end),
       ),
       with: {
         patient: true,
@@ -211,16 +217,24 @@ export default async function DashboardPage({
           {/* Tabela */}
           <Card>
             <CardHeader>
-              <div className="flex items-center gap-3">
-                <Calendar className="text-muted-foreground" />
-                <CardTitle className="text-base">
-                  Agendamentos de hoje
-                </CardTitle>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Calendar className="text-muted-foreground" />
+                  <CardTitle className="text-base">
+                    Agendamentos de hoje
+                  </CardTitle>
+                </div>
+                <Link
+                  href="appointments"
+                  className="text-sm font-semibold text-[#9CA7B2]"
+                >
+                  Ver todos
+                </Link>
               </div>
             </CardHeader>
             <CardContent>
               <DataTable
-                columns={appointmentsTableColumns}
+                columns={dashboardAppointmentsTableColumns}
                 data={todayAppointments}
               />
             </CardContent>
