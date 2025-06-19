@@ -1,17 +1,8 @@
-import {
-  Activity,
-  Baby,
-  Bone,
-  Brain,
-  Eye,
-  Hand,
-  Heart,
-  Hospital,
-  Stethoscope,
-} from "lucide-react";
+import { Hospital } from "lucide-react";
 
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { getSpecialtyIcon } from "@/helpers/specialtyIcon";
 
 interface TopSpecialtiesProps {
   specialties: {
@@ -19,29 +10,6 @@ interface TopSpecialtiesProps {
     appointments: number;
   }[];
 }
-
-// código para gerar ícones baseados no tipo de especialidade. O ideal seria cadastrar esses ícones no banco ou criar um ENUM
-const getSpecialtyIcon = (specialty: string) => {
-  const specialtyLower = specialty.toLowerCase();
-
-  if (specialtyLower.includes("cardiolog")) return Heart;
-  if (
-    specialtyLower.includes("ginecolog") ||
-    specialtyLower.includes("obstetri")
-  )
-    return Baby;
-  if (specialtyLower.includes("pediatr")) return Activity;
-  if (specialtyLower.includes("dermatolog")) return Hand;
-  if (
-    specialtyLower.includes("ortoped") ||
-    specialtyLower.includes("traumatolog")
-  )
-    return Bone;
-  if (specialtyLower.includes("oftalmolog")) return Eye;
-  if (specialtyLower.includes("neurolog")) return Brain;
-
-  return Stethoscope; // ícone padrão
-};
 
 export function TopSpecialties({ specialties }: TopSpecialtiesProps) {
   // coleta a especialidade que mais possue agendamentos

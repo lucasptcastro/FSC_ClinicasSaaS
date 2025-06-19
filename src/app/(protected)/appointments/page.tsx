@@ -2,6 +2,14 @@ import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { DataTable } from "@/components/ui/data-table";
 import {
   PageActions,
@@ -50,6 +58,22 @@ const AppointmentsPage = async () => {
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
+          <Breadcrumb className="mb-6">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink className="font-semibold">
+                  Menu Principal
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator className="text-primary" />
+              <BreadcrumbItem>
+                <BreadcrumbPage className="text-primary font-semibold">
+                  Agendamentos
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+
           <PageTitle>Agendamentos</PageTitle>
           <PageDescription>
             Gerencie os agendamentos da sua clínica

@@ -2,6 +2,14 @@ import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { DataTable } from "@/components/ui/data-table";
 import {
   PageActions,
@@ -36,6 +44,22 @@ const PatientsPage = async () => {
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
+          <Breadcrumb className="mb-6">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink className="font-semibold">
+                  Menu Principal
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator className="text-primary" />
+              <BreadcrumbItem>
+                <BreadcrumbPage className="text-primary font-semibold">
+                  Pacientes
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+
           <PageTitle>Pacientes</PageTitle>
           <PageDescription>
             Gerencie os pacientes da sua clínica
@@ -46,7 +70,9 @@ const PatientsPage = async () => {
         </PageActions>
       </PageHeader>
       <PageContent>
-        <DataTable data={patients} columns={patientsTableColumns} />
+        <div className="bg-white">
+          <DataTable data={patients} columns={patientsTableColumns} />
+        </div>
       </PageContent>
     </PageContainer>
   );

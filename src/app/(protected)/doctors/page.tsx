@@ -3,6 +3,14 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import {
   PageActions,
   PageContainer,
   PageContent,
@@ -39,6 +47,22 @@ export default async function DoctorsPage() {
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
+          <Breadcrumb className="mb-6">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink className="font-semibold">
+                  Menu Principal
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator className="text-primary" />
+              <BreadcrumbItem>
+                <BreadcrumbPage className="text-primary font-semibold">
+                  Médicos
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+
           <PageTitle>Médicos</PageTitle>
           <PageDescription>
             Gerencie os médicos cadastrados no sistema

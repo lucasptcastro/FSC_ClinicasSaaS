@@ -16,6 +16,7 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { doctorsTable } from "@/db/schema";
 import { formatCurrencyInCents } from "@/helpers/currency";
+import { getSpecialtyIcon } from "@/helpers/specialtyIcon";
 
 import { getAvailability } from "./_helpers/availability";
 import { UpsertDoctorForm } from "./upsert-doctor-form";
@@ -36,17 +37,28 @@ export function DoctorCard({ doctor }: DoctorCardProps) {
 
   const availability = getAvailability(doctor);
 
+  const Icon = getSpecialtyIcon(doctor.specialty);
+
   return (
     <Card>
       <CardHeader>
         <div className="flex items-center gap-2">
-          <Avatar className="h-10 w-10">
+          <Avatar className="h-[72px] w-[72px]">
             <AvatarFallback>{doctorInitials}</AvatarFallback>
           </Avatar>
 
-          <div>
+          <div className="flex flex-col">
             <h3 className="text-sm font-medium">{doctor.name}</h3>
-            <p className="text-muted-foreground text-sm">{doctor.specialty}</p>
+
+            <div className="flex items-center gap-2">
+              <div className="bg-primary/10 flex h-10 w-10 items-center justify-center rounded-full">
+                <Icon className="text-primary h-5 w-5" />
+              </div>
+
+              <p className="text-muted-foreground text-sm font-medium">
+                {doctor.specialty}
+              </p>
+            </div>
           </div>
         </div>
       </CardHeader>
