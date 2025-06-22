@@ -70,7 +70,7 @@ const PatientsPage = async () => {
         </PageActions>
       </PageHeader>
       <PageContent>
-        <div className="bg-white">
+        <div>
           <DataTable data={patients} columns={patientsTableColumns} />
         </div>
       </PageContent>

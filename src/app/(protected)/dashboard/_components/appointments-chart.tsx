@@ -29,9 +29,9 @@ export function AppointmentsChart({
   dailyAppointmentsData,
 }: AppointmentsChartProps) {
   // Gera 21 dias (data atual + 10 dias atrás + 10 dias a frente)
-  const chartDays = Array.from({ length: 21 }).map((_item, index) =>
+  const chartDays = Array.from({ length: 15 }).map((_item, index) =>
     dayjs()
-      .subtract(10 - index, "days")
+      .subtract(3 - index, "days")
       .format("YYYY-MM-DD"),
   );
 
