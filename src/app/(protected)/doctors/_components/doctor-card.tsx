@@ -1,5 +1,8 @@
 "use client";
 
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
 import { CalendarIcon, ClockIcon, DollarSign } from "lucide-react";
 import { useState } from "react";
 
@@ -25,6 +28,9 @@ interface DoctorCardProps {
   doctor: typeof doctorsTable.$inferSelect; // pega o tipo de doctor que vem do banco de dados
 }
 
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
 export function DoctorCard({ doctor }: DoctorCardProps) {
   const [isUpsertDoctorDialogOpen, setIsUpsertDoctorDialogOpen] =
     useState(false);
@@ -38,6 +44,20 @@ export function DoctorCard({ doctor }: DoctorCardProps) {
   const availability = getAvailability(doctor);
 
   const Icon = getSpecialtyIcon(doctor.specialty);
+
+  const doctorAvailableFrom = dayjs()
+    .utc()
+    .set("hour", Number(doctor.availableFromTime.split(":")[0]))
+    .set("minute", Number(doctor.availableFromTime.split(":")[1]))
+    .set("second", 0)
+    .local();
+
+  const doctorAvailableTo = dayjs()
+    .utc()
+    .set("hour", Number(doctor.availableToTime.split(":")[0]))
+    .set("minute", Number(doctor.availableToTime.split(":")[1]))
+    .set("second", 0)
+    .local();
 
   return (
     <Card>
@@ -70,8 +90,8 @@ export function DoctorCard({ doctor }: DoctorCardProps) {
         </Badge>
         <Badge variant="outline">
           <ClockIcon className="mr-1" />
-          Das {availability.from.format("HH:mm")} às{" "}
-          {availability.to.format("HH:mm")}
+          Das {doctorAvailableFrom.format("HH:mm")} às{" "}
+          {doctorAvailableTo.format("HH:mm")}
         </Badge>
         <Badge variant="outline">
           <DollarSign className="mr-1" />

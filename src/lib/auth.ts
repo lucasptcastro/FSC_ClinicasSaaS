@@ -7,6 +7,8 @@ import * as schema from "@/db/schema";
 
 import { db } from "../db";
 
+const FIVE_MINUTES = 5 * 60; // 5 minutos em segundos
+
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg", // or "pg" or "mysql" (tipos de banco de dados suportados)
@@ -49,6 +51,10 @@ export const auth = betterAuth({
     modelName: "usersTable", // nome da tabela de usuários
   },
   session: {
+    cookieCache: {
+      enabled: true, // habilita o cache de cookies para que a aplicação não precise consultar o banco de dados a cada requisição, tornando-se mais rápida
+      maxAge: FIVE_MINUTES, // tempo máximo de vida do cookie
+    },
     modelName: "sessionsTable", // nome da tabela de sessões
   },
   account: {

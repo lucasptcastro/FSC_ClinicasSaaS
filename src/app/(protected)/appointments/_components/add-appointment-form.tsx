@@ -5,6 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import { format, startOfDay } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
 import { CalendarIcon } from "lucide-react";
 import { useAction } from "next-safe-action/hooks";
 import { useEffect } from "react";
@@ -47,6 +49,9 @@ import {
 } from "@/components/ui/select";
 import { doctorsTable, patientsTable } from "@/db/schema";
 import { cn } from "@/lib/utils";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 const formSchema = z.object({
   patientId: z.string().min(1, {
@@ -314,15 +319,17 @@ const AddAppointmentForm = ({
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {availableTimes?.data?.map((time) => (
-                      <SelectItem
-                        key={time.value}
-                        value={time.value}
-                        disabled={!time.available}
-                      >
-                        {time.label} {!time.available && "(Indisponível)"}
-                      </SelectItem>
-                    ))}
+                    {availableTimes?.data?.map((time) => {
+                      return (
+                        <SelectItem
+                          key={time.value}
+                          value={time.value}
+                          disabled={!time.available}
+                        >
+                          {time.label} {!time.available && "(Indisponível)"}
+                        </SelectItem>
+                      );
+                    })}
                   </SelectContent>
                 </Select>
                 <FormMessage />

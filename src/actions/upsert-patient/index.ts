@@ -1,35 +1,21 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { headers } from "next/headers";
 
 import { db } from "@/db";
 import { patientsTable } from "@/db/schema";
-import { auth } from "@/lib/auth";
-import { actionClient } from "@/lib/next-safe-action";
+import { protectedWithClinicActionClient } from "@/lib/next-safe-action";
 
 import { upsertPatientSchema } from "./schema";
 
-export const upsertPatient = actionClient
+export const upsertPatient = protectedWithClinicActionClient
   .schema(upsertPatientSchema)
-  .action(async ({ parsedInput }) => {
-    const session = await auth.api.getSession({
-      headers: await headers(),
-    });
-
-    if (!session?.user) {
-      throw new Error("Não autorizado");
-    }
-
-    if (!session.user.clinic) {
-      throw new Error("Clínica não encontrada");
-    }
-
+  .action(async ({ parsedInput, ctx }) => {
     await db
       .insert(patientsTable)
       .values({
         id: parsedInput.id,
-        clinicId: session.user.clinic.id,
+        clinicId: ctx.user.clinic.id,
         ...parsedInput,
       })
       .onConflictDoUpdate({

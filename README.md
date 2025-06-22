@@ -10,6 +10,8 @@
 
 - Conventional Commits: é um padrão para escrever mensagens de commit de forma estruturada e semântica. Ele define uma convenção simples e legível por humanos e por máquinas para que cada commit indique claramente a intenção da mudança no código.
 
+- Cache Aside: é uma estratégia de cache em que o aplicativo verifica primeiro o cache antes de acessar o banco de dados (este conceito está sendo utilizado no projeto)
+
 ### Next
 
 - É importante tratar as server actions como rotas de api, sendo assim é necessário protegê-las para que não sejam acessadas por usuários não autenticados (já que geralmente as rotas de api estão conectadas ao banco de dados)
