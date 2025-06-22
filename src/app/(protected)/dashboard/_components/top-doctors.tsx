@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { getInitials } from "@/helpers/initials";
 
 interface TopDoctorsProps {
@@ -38,30 +39,35 @@ export function TopDoctors({ doctors }: TopDoctorsProps) {
         </div>
 
         {/* Doctors List */}
-        <div className="space-y-6">
-          {doctors.map((doctor) => (
-            <div key={doctor.id} className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <Avatar className="h-10 w-10">
-                  <AvatarFallback className="bg-gray-100 text-lg font-medium text-gray-600">
-                    {getInitials(doctor.name)}
-                  </AvatarFallback>
-                </Avatar>
-                <div>
-                  <h3 className="text-sm">{doctor.name}</h3>
-                  <p className="text-muted-foreground text-sm">
-                    {doctor.specialty}
-                  </p>
+        <ScrollArea className="h-72">
+          <div className="space-y-6">
+            {doctors.map((doctor) => (
+              <div
+                key={doctor.id}
+                className="flex items-center justify-between"
+              >
+                <div className="flex items-center gap-4">
+                  <Avatar className="h-10 w-10">
+                    <AvatarFallback className="bg-gray-100 text-lg font-medium text-gray-600">
+                      {getInitials(doctor.name)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <h3 className="text-sm">{doctor.name}</h3>
+                    <p className="text-muted-foreground text-sm">
+                      {doctor.specialty}
+                    </p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <span className="text-muted-foreground text-sm font-medium">
+                    {doctor.appointments} agend.
+                  </span>
                 </div>
               </div>
-              <div className="text-right">
-                <span className="text-muted-foreground text-sm font-medium">
-                  {doctor.appointments} agend.
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </ScrollArea>
       </CardContent>
     </Card>
   );

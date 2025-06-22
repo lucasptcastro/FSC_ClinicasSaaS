@@ -1,4 +1,3 @@
-import { Session } from "better-auth";
 import { endOfDay, startOfDay } from "date-fns";
 import dayjs from "dayjs";
 import { and, count, desc, eq, gte, lte, sql, sum } from "drizzle-orm";
@@ -9,7 +8,7 @@ import { appointmentsTable, doctorsTable, patientsTable } from "@/db/schema";
 interface Params {
   from: string;
   to: string;
-  session: Session & {
+  session: {
     user: {
       clinic: {
         id: string;
