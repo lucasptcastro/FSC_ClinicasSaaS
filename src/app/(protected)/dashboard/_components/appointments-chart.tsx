@@ -28,14 +28,14 @@ interface AppointmentsChartProps {
 export function AppointmentsChart({
   dailyAppointmentsData,
 }: AppointmentsChartProps) {
-  // Gera 21 dias (data atual + 10 dias atrás + 10 dias a frente)
+  // Gera 15 dias (data atual + 7 dias atrás + 7 dias a frente)
   const chartDays = Array.from({ length: 15 }).map((_item, index) =>
     dayjs()
-      .subtract(3 - index, "days")
+      .subtract(7 - index, "days")
       .format("YYYY-MM-DD"),
   );
 
-  // Coleta os dados para cada um dos 21 dias
+  // Coleta os dados para cada um dos 15 dias
   const chartData = chartDays.map((date) => {
     const dataForDay = dailyAppointmentsData.find((item) => item.date === date);
     return {
