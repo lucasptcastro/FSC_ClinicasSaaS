@@ -2,6 +2,7 @@
 
 import {
   CalendarDays,
+  Gem,
   LayoutDashboard,
   Loader2,
   LogOut,
@@ -119,6 +120,32 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel className="text-[#5B7189]">
+            Outros
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname === "/subscription"}
+                >
+                  <Link href="/subscription">
+                    <Gem
+                      className={`${pathname === "/subscription" ? "text-[#0B68F7]" : "text-[#5B7189]"}`}
+                    />
+                    <span
+                      className={`${pathname === "/subscription" ? "text-[#0B68F7]" : "text-[#5B7189]"} font-semibold`}
+                    >
+                      Assinatura
+                    </span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
